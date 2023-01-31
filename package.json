@@ -1,0 +1,23 @@
+{
+  "name": "cc_express_endpoint",
+  "version": "1.0.0",
+  "description": "Let's practice and have a good image of how endpoints work in Express.js, if you are stuck at any point, please ask a mentor for help.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raberik98/CC_Express_Endpoints.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raberik98/CC_Express_Endpoints/issues"
+  },
+  "homepage": "https://github.com/raberik98/CC_Express_Endpoints#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
