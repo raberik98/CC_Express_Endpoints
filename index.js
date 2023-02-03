@@ -36,8 +36,8 @@ let employees = [
 app.get("/getSomeData", (req,res) => {
     res.status(200).json(employees);
 })
-//Let's see what we did here, when this endpoint get's triggered we will send back a JSON object which contains data, and also we send back a status code of 200
-//At this point I would like you to please stop for a moment and switch back to the README.md file and read the extra explenation about status codes and about express responds.
+//Let's see what we did here, when this endpoint get's triggered we will send back a JSON object which contains the data, and also we send back a status code of 200
+//At this point I would like you to please stop for a moment and open the info.txt file and read the extra explanation about status codes and about express responds.
 
 
 

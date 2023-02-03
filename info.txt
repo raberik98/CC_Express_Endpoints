@@ -1,0 +1,26 @@
+Thank you for reading this file!
+Here I would like to point out some background material for you to read.
+
+Let's start with the Express.js response object, please read this article.
+
+https://medium.com/gist-for-js/use-of-res-json-vs-res-send-vs-res-end-in-express-b50688c0cddf
+
+In practice we will mainly use res.json() but it's good to know what else we can use.
+One more thing that is worth mentioning: res.render(), we will use it for example when we don't have frontend and we are using a template engine like ejs. 
+This way we will do server side rendering.
+Please read this article if you are planning to use a solution like this: https://www.geeksforgeeks.org/express-js-res-render-function/
+
+Sending status codes are a very simple to implement but are very useful to have on our backend server.
+Status codes are used to inform the client about the outcome/result of the API call.
+Some of the more often used status codes are: 200(means: OK), 404(means: Not found), 500(means: Internal Server Error)
+If you are unsure about the correct response code you would like to send please check this little list of status codes (you are not required to memorize all of them):
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status 
+
+When we are using Express.js we can easily send back the status code of our chosing by chaining the ".status(200)" to the response object.
+You can see a valid example in the GET endpoint in the index.js file.
+
+Ok, you made it so far, AWESOME, now let's go back to the index.js and let's continue our studies by observing some other endpoints, and check to some useful practices. :D
+
+
+
+
