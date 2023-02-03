@@ -40,6 +40,27 @@ app.get("/getSomeData", (req,res) => {
 //At this point I would like you to please stop for a moment and open the info.txt file and read the extra explanation about status codes and about express responds.
 
 
+//Nice let's check another endpoint but this time we will are curious about a specific employee.
+//Here we will try to get some data from the URL, this time we will want to get the "id" of the employee of which's data we will want to send back.
+//In this case what ends up happening is that by using the ":" before the "id" in the URL we are telling the backend that at this endpoint's URL what ever is at the place of the "id",
+//we can get it from the URL by the name of id. Please check the code and see how we will do it.
+app.get("/getSpecificEmployee/:id", (req,res) => {
+    const requestedId = req.params.id
+    let requestedEmployee = employees.find(oneEmployee => oneEmployee.id == requestedId)
+
+    if (requestedEmployee != undefined) {
+        res.status(200).json(requestedEmployee)
+    }
+    else
+    {
+        res.status(404).json({"message":"Employee not found!"})
+    }
+})
+//From the request object (we call it "req" here) we can get out the id from the params
+//And now we will send back the employee with the requested id
+//We used the find() javascript method which will return the right object or will return "undefined" with this we can easily send a response in both cases.
+//Please feel free to check the next fakeFetch in the FakeClient.mjs and check how we would be able to trigger this endpoint from the frontend.
+
 
 app.listen(3000)
 console.log("App running at port:3000");
