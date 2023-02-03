@@ -62,5 +62,38 @@ app.get("/getSpecificEmployee/:id", (req,res) => {
 //Please feel free to check the next fakeFetch in the FakeClient.mjs and check how we would be able to trigger this endpoint from the frontend.
 
 
+//So far, all we did is requestion data but now, with this endpoint we are expecting to receive data from the user, let's see and example to this.
+//Noticed that the type of this endpoint is POST, meaning that now we can have a body in our request object. 
+//In this example we will expect that the data we will receive, contains all the data we need to be able to register a new employee.
+//We can access the body like this: req.body, here the body is also an object and it can contain many things, let's take a look.
+app.post("/postAddNewEmpolyee",(req,res) => {
+    const body = req.body
+    //TASK FOR YOU: Log the content of the body to the console and inspect what it contains when you are running the fake fetch from the FakeClient.mjs
+
+    try {
+        let newEmployee = {}
+        newEmployee.id = employees.length+1
+        newEmployee.name = body.name
+        newEmployee.age = body.age
+        newEmployee.email = body.email
+        newEmployee.profession = body.profession
+
+        employees.push(newEmployee)
+        res.status(200).json({"message":"New employee has been registered!"})
+    } catch (error) {
+        console.log(error);
+        res.status().json({"message":"Invalid data has been provided!"})
+    }
+})
+//Please feel free to check the next fakeFetch in the FakeClient.mjs and check where exactly this body comes from.
+
+
+//Now we want to edit an already existing employee, check out this: we will combine two things that we have learned ok?
+//We will get data from the params and also from the body.
+//We will get the id of the employee we want to edit from the params and we will get the new data from the body.
+app.put("/putEditEmployee/:id",(req,res) => {
+
+})
+
 app.listen(3000)
 console.log("App running at port:3000");
