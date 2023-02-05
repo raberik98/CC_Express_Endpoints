@@ -136,5 +136,38 @@ app.delete("/deleteEmployee/:id",(req,res) => {
 //it's going to be slightly more complicated thatn this.
 //Please feel free to check the next fakeFetch in the FakeClient.mjs and check how this endpoint could be triggered from the frontend.
 
+
+
+//--------------------------------------------------PLEASE READ THIS CAREFULLY:-----------------------------------------------------------
+
+//Now you might have noticed that, the difference between POST, PUT, and DELETE are minimal. 
+//(in this example in the FakeClient.js the DELETE fetch didn't have a body, 
+//it wasn't because it can't have it, but this time it was enough for me to pass the id in the params, but if you want to send data to the backend then the syntax is the same as it was in the PUT and POST)
+//Except for the GET every request type had a body where we could send data, and the syntax apart from the request type (for example: app.delete or app.put or app.post) was the same.
+//We took the data from the request objects body and used it in our logic. So the question you might have is, is there a real difference between POST, PUT and DELETE?
+//No there isn't technically you can use only GET and POST and cover all of the functionalites you want to have easily.
+//The reason why it is better to use PUT and DELETE as well is because your code will be easier to read this way, and you can use the same URL string like this multiple times.
+//Confused? It's ok, let me explain.
+//When you are writing a GET endpoint you can use a URL only once, I give you an example:
+
+//app.get("/employees", (req,res) => {LOGIC HERE})
+//app.get("/employees", (req,res) => {LOGIC HERE})
+//THIS WON'T WORK, because you have two GET endpoints with the same URL string. Let's have another example:
+
+//app.post("/employees", (req,res) => {LOGIC HERE})
+//app.post("/employees", (req,res) => {LOGIC HERE})
+//THIS WON'T WORK, for the same reason as well. But ...
+
+//app.get("/employees", (req,res) => {LOGIC HERE})
+//app.post("/employees", (req,res) => {LOGIC HERE})
+//app.put("/employees", (req,res) => {LOGIC HERE})
+//app.delete("/employees", (req,res) => {LOGIC HERE})
+//THIS WILL WORK, because even though the URL string is the same, the type is different. I hope it makes at least a bit more sense now :)
+
+//One final thing I want to ask you, please go through this example project as many times as you need and if you have any questions, seriously ANY questions, 
+//contact a mentor and ask them to help you fully understand this. Knowing this is mandatory for you to be able to progress on, and we are more than happy to assist you.
+
+//----------------------------------------------------------------------------------------------------------------------------------------
+
 app.listen(3000)
 console.log("App running at port:3000");
