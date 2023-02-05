@@ -23,7 +23,7 @@ let employees = [
 //We will need to define the endpoints first, an endpoint will take two parameters, 1:a Path, 2: a function
 //Let's take a closer look, shall we :)
 
-//This is an example endpoint, noticed how I defined what kind of endpoint do I want ot make?
+//This is an example endpoint, noticed how I defined what kind of endpoint I want ot make?
 //"app.get" as you can see you can define the kind of endpoint you want to make right at the start of creating one.
 //In this case this is going to be a GET endpoint with the Path: "/getSomeData"
 //We will check how is it possible to get data through this endpoint, but for now let's see what else is there shal we? :)
