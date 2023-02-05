@@ -9,7 +9,7 @@ app.use(express.json());
 //The goal of our express backend application here is to handle the data stored in this array.
 let employees = [
     {id:1, name:"Adam England", age:32, email:"Adam.England32@company.com", profession:"Bodyguard"},
-    {id:2, name:"Kate Taylor", age:45, email:"Kate.Taylor45@company.com", profession:"Secretary"},
+    {id:2, name:"Kate Taylorr", age:45, email:"Kate.Taylor45@company.com", profession:"Secretary"},
     {id:3, name:"Erwyn Jager", age:28, email:"Erwyn.Jager28@company.com", profession:"Civil Engineer"},
     {id:4, name:"Abigel Taylor", age:20, email:"Abigel.Toylor20@company.com", profession:"Junior HR manager"}
 ]
@@ -79,10 +79,10 @@ app.post("/postAddNewEmpolyee",(req,res) => {
         newEmployee.profession = body.profession
 
         employees.push(newEmployee)
-        res.status(200).json({"message":"New employee has been registered!"})
+        res.status(201).json({"message":"New employee has been registered!"})
     } catch (error) {
         console.log(error);
-        res.status().json({"message":"Invalid data has been provided!"})
+        res.status(406).json({"message":"Invalid data has been provided!"})
     }
 })
 //Please feel free to check the next fakeFetch in the FakeClient.mjs and check where exactly this body comes from.
@@ -91,9 +91,50 @@ app.post("/postAddNewEmpolyee",(req,res) => {
 //Now we want to edit an already existing employee, check out this: we will combine two things that we have learned ok?
 //We will get data from the params and also from the body.
 //We will get the id of the employee we want to edit from the params and we will get the new data from the body.
+//But one more thing before we start, when do we use PUT? Usually when we are trying to edit/update/extend already existing data in our database. (in our case it's just an array of data)
 app.put("/putEditEmployee/:id",(req,res) => {
+    let body = req.body
 
+    try {
+        employees.forEach(oneEmployee => {
+            if (oneEmployee.id == req.params.id) {
+
+                oneEmployee.name = body.name
+                oneEmployee.age = body.age
+                oneEmployee.email = body.email
+                oneEmployee.profession = body.profession
+
+            }
+        });
+        res.status(201).json({"message":"Edit was successful!"})
+    } catch (error) {
+        console.log(error);
+        res.status(406).json({"message":"Edit was unsuccessful!"})
+    }
 })
+//As you can see, I keep putting my main code inside of a tryCatch, and the reason for it is, that it's a good practice and a standard requirement to be able to handle potential errors
+//in the function of your endpoint.
+//Please feel free to check the next fakeFetch in the FakeClient.mjs and check how this endpoint could be triggered from the frontend.
+
+
+//Now this leaves us to one more functionality, we learned how we can get data, how we can post data, how we can edit data, now we will check how to delete data.
+//To achive this, we will use a DELETE endpoint, let's see an example.
+app.delete("/deleteEmployee/:id",(req,res) => {
+    try {
+        let newEmployeesArray = employees.filter(oneEmployee =>
+            oneEmployee.id != req.params.id
+        )
+        employees = newEmployeesArray
+        
+        res.status(201).json({"message":`Successfully deleted the employee with id: ${req.params.id}`})
+    } catch (error) {
+        console.log(error);
+        res.status(406).json({"message":"Delete was unsuccessful!"})
+    }
+})
+//As you can see I simply filter the original array and overwrite it after that, now when we are going to use a real database instead of just an array,
+//it's going to be slightly more complicated thatn this.
+//Please feel free to check the next fakeFetch in the FakeClient.mjs and check how this endpoint could be triggered from the frontend.
 
 app.listen(3000)
 console.log("App running at port:3000");

@@ -73,6 +73,60 @@ async function addNewEmployee(passedData) {
 }
 
 //console.log(await addNewEmployee(theDataIWantToSend));
+//console.log(await firstGet());
+//IMPORTANT: Careful with nodemon here, make sure to uncomment the part of the code where you list out the employees :)
+
+let theEditData = {
+  id: 2,
+  name: "Kate Taylor",
+  age: 40,
+  email: "Kate.Taylor40@company.com",
+  profession: "Senior Secretary"
+}
+
+async function editEmployee(passedData) {
+  try{
+
+    const response = await fetch(`http://127.0.0.1:3000/putEditEmployee/${passedData.id}`, {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(passedData)
+    })
+
+    const data = await response.json();
+    return data;
+  }
+  catch(error){
+    const errorMessage = await error.json()
+    return errorMessage
+  }
+}
+
+// console.log(await editEmployee(theEditData));
+// console.log(await firstGet());
 //IMPORTANT: Careful with nodemon here, make sure to uncomment the part of the code where you list out the employees :)
 
 
+async function deleteEmployee() {
+  try{
+
+    const response = await fetch('http://127.0.0.1:3000/deleteEmployee/1', {
+      method: 'DELETE'
+    })
+
+    const data = await response.json();
+    return data;
+  }
+  catch(error){
+    const errorMessage = await error.json()
+    return errorMessage
+  }
+}
+
+// console.log(await deleteEmployee());
+// console.log(await firstGet());
+//IMPORTANT: Careful with nodemon here, make sure to uncomment the part of the code where you list out the employees :)
+
+//Thank you for following this little project, I hope it was useful, please go back to the index.js and read the last comments that I made.
